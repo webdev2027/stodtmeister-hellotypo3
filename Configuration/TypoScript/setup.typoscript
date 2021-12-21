@@ -1,0 +1,8 @@
+### fluid styled content & styles
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/Styling/setup.typoscript'
+### helper
+@import 'EXT:hellotypo3/Configuration/TypoScript/Helper/DynamicContent.typoscript'
+### hellocode
+@import 'EXT:hellotypo3/Configuration/TypoScript/Setup/*.typoscript'
+@import 'EXT:hellotypo3/Configuration/TypoScript/Library/*.typoscript'

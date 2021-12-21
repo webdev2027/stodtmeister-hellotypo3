@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<!--
+	=====================
+		EXT:.../Resources/Private/Extensions/News/Partials/List/ItemTop.html
+-->
+
+<li>
+
+    <f:if condition="{newsItem.mediaPreviews}">
+        <f:then>
+
+                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="popular-img">
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <f:image class="img-responsive" image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" />
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <f:image class="img-responsive" image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" />
+                        </f:if>
+                    </f:alias>
+                </n:link>
+
+        </f:then>
+        <f:else>
+            <f:if condition="{settings.displayDummyIfNoMedia}">
+
+            <span class="no-media-element">
+            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="popular-img">
+                <f:image src="{settings.list.media.dummyImage}" title="" alt="" class="img-responsive" />
+            </n:link>
+            </span>
+
+            </f:if>
+        </f:else>
+    </f:if>
+
+    <div class="p-content">
+        <h4><n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="text-uppercase">{newsItem.title}</n:link></h4>
+        <span class="p-date"><f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date></span>
+    </div>
+
+</li>
+
+</html>

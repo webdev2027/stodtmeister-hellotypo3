@@ -1,0 +1,46 @@
+### fluid styled content : menu pages
+/*
+lib.mediaResources = FILES
+lib.mediaResources {
+    references {
+      table = pages
+      #Seiten-ID ubergabe
+      uid.dataWrap= {field:uid}
+      fieldName = media
+    }
+    renderObj = IMAGE
+    renderObj {
+      file.width = 200c
+      file.height = 200c
+      file.import.data = file:current:uid
+      file.crop.data = file:current:crop
+      file.treatIdAsReference = 1
+      altText.data = file:current:title
+      params = class="ce-menu-1-image"
+      wrap = |
+    }
+}
+
+*/
+
+### fluid styled content : menu subpages for news overview
+lib.mediaResourcesSubpages = FILES
+lib.mediaResourcesSubpages {
+    references {
+        table = pages
+        #Seiten-ID ubergabe
+        uid.dataWrap= {field:uid}
+        fieldName = media
+    }
+    renderObj = IMAGE
+    renderObj {
+        file.width = 300c
+        file.height = 200c
+        file.import.data = file:current:uid
+        file.crop.data = file:current:crop
+        file.treatIdAsReference = 1
+        altText.data = file:current:title
+        params = class="img-year"
+        wrap = |
+    }
+}

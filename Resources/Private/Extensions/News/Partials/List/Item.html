@@ -1,0 +1,164 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<!--
+	=====================
+		EXT:.../Resources/Private/Extensions/News/Partials/List/Item.html
+-->
+
+<f:if condition="{iterator.index} == 0">
+    <f:then>
+
+        <article class="single-blog">
+            <div class="post-thumb">
+
+                <f:if condition="{newsItem.mediaPreviews}">
+                    <f:then>
+                        <div class="news-img-wrap">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                    <f:if condition="{mediaElement.originalResource.type} == 2">
+                                        <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}"
+                                                 alt="{mediaElement.originalResource.alternative}" class="img-responsive"
+                                                 width="750"
+                                                 height="475c"/>
+                                    </f:if>
+                                    <f:if condition="{mediaElement.originalResource.type} == 4">
+                                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
+                                    </f:if>
+                                    <f:if condition="{mediaElement.originalResource.type} == 5">
+                                        <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}"
+                                                 alt="{mediaElement.originalResource.alternative}" class="img-responsive"
+                                                 width="750"
+                                                 maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                    </f:if>
+                                </f:alias>
+                            </n:link>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{settings.displayDummyIfNoMedia}">
+                            <div class="news-img-wrap">
+                                    <span class="no-media-element">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:image src="{settings.list.media.dummyImage}" title="" alt="" class="img-responsive"
+                                                     width="750"
+                                                     maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                        </n:link>
+                                    </span>
+                            </div>
+                        </f:if>
+                    </f:else>
+                </f:if>
+
+            </div>
+            <div class="post-content">
+                <div class="entry-header text-center text-uppercase">
+                    <f:if condition="{newsItem.firstCategory}">
+                        <a href="" class="post-cat">{newsItem.firstCategory.title}</a>
+                    </f:if>
+                    <h2>
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                    </h2>
+                </div>
+
+                <div class="entry-content">
+                    {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                </div>
+
+                <div class="continue-reading text-center text-uppercase">
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">Mehr lesen</n:link>
+                </div>
+
+                <div class="post-meta">
+                    <ul class="pull-left list-inline author-meta">
+                        <li class="date"><f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+    </f:then>
+    <f:else>
+
+        <article class="single-blog post-list">
+
+            <n:excludeDisplayedNews newsItem="{newsItem}"/>
+
+            <div class="media">
+                <div class="media-left">
+                    <div class="post-thumb">
+
+                        <f:if condition="{newsItem.mediaPreviews}">
+                            <f:then>
+                                <div class="news-img-wrap">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                            <f:if condition="{mediaElement.originalResource.type} == 2">
+                                                <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}"
+                                                         alt="{mediaElement.originalResource.alternative}" class="img-responsive"
+                                                         width="360"
+                                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                            </f:if>
+                                            <f:if condition="{mediaElement.originalResource.type} == 4">
+                                                <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
+                                            </f:if>
+                                            <f:if condition="{mediaElement.originalResource.type} == 5">
+                                                <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}"
+                                                         alt="{mediaElement.originalResource.alternative}" class="img-responsive"
+                                                         width="360"
+                                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                            </f:if>
+                                        </f:alias>
+                                    </n:link>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{settings.displayDummyIfNoMedia}">
+                                    <div class="news-img-wrap">
+                                    <span class="no-media-element">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:image src="{settings.list.media.dummyImage}" title="" alt="" class="img-responsive"
+                                                     width="360"
+                                                     maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                        </n:link>
+                                    </span>
+                                    </div>
+                                </f:if>
+                            </f:else>
+                        </f:if>
+
+                    </div>
+                </div>
+
+                <div class="media-body">
+                    <div class="post-content">
+                        <div class="entry-header text-left text-uppercase">
+                            <f:if condition="{newsItem.firstCategory}">
+                                <a href="" class="post-cat">{newsItem.firstCategory.title}</a>
+                            </f:if>
+                            <h2>
+                                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                            </h2>
+                        </div>
+                        <div class="entry-content">
+                            {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                        </div>
+                        <div class="post-meta">
+                            <ul class="list-inline author-meta">
+                                <li class="date">
+                                    <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </f:else>
+</f:if>
+
+
+
+</html>

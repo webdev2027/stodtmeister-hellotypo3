@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="General" />
+<!--
+	=====================
+		EXT:***/Resources/Private/Extensions/News/Templates/News/SearchForm.html
+-->
+
+<f:section name="content">
+	<aside class="widget news-letter-widget">
+		<f:form object="{search}" name="search" pageUid="{settings.listPid}">
+				<h2 class="widget-title text-uppercase text-center">Suche</h2>
+				<div class="form-group">
+					<f:form.textfield id="news-subject" property="subject" class="form-control" placeholder="München, Watzmann, Neuseeland ..." />
+				</div>
+
+				<f:form.submit value="{f:translate(key:'search-start')}" class="text-uppercase text-center btn btn-subscribe"/>
+
+		</f:form>
+	</aside>
+</f:section>
+</html>

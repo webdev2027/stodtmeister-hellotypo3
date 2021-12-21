@@ -1,0 +1,41 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <header>
+        <f:comment><f:render partial="Hero" arguments="{_all}" /></f:comment>
+        <f:render partial="Navigation" arguments="{_all}" />
+    </header>
+
+    <f:if condition="{0:data.uid} != {0:'1'}">
+        <f:then>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <f:render partial="Breadcrumb" arguments="{_all}" />
+                    </div>
+                </div>
+            </div>
+        </f:then>
+    </f:if>
+
+    <div class="kotha-default-content">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-8">
+                    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{colPos: '101'}" />
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="kotha-sidebar">
+                        <f:format.html parseFuncTSPath="">{102}</f:format.html>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <f:render partial="Footer" arguments="{_all}" />
+</f:section>

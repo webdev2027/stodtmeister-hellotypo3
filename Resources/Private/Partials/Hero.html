@@ -1,0 +1,41 @@
+<f:if condition="{imgResources}">
+    <f:then>
+        <f:for each="{imgResources}" as="file">
+            <div id="img-header" style="background-image: url('https://www.stodtmeister.info/fileadmin{file.identifier}');">
+                <div class="container">
+                    <div id="logo">
+                        <f:format.raw>
+                            <f:if condition="{data.subtitle}">
+                                <f:then>
+                                    <h1>{data.subtitle}</h1>
+                                </f:then>
+                                <f:else>
+                                    <h1>{data.title}</h1>
+                                </f:else>
+                            </f:if>
+                        </f:format.raw>
+                        <f:comment><!--p class="tagline">Hier kann was stehen ..</p--></f:comment>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </f:then>
+    <f:else>
+        <div id="img-header" style="background-image: url('/typo3conf/ext/hellotypo3/Resources/Public/images/fallback/mountains_1920x1200.jpg');">
+            <div class="container">
+                <div id="logo">
+                    <f:format.raw>
+                        <f:if condition="{data.subtitle}">
+                            <f:then>
+                                <h1>{data.subtitle}</h1>
+                            </f:then>
+                            <f:else>
+                                <h1>{data.title}</h1>
+                            </f:else>
+                        </f:if>
+                    </f:format.raw>
+                </div>
+            </div>
+        </div>
+    </f:else>
+</f:if>

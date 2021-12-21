@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+
+	<div class="row">
+
+			<f:if condition="{menu}">
+
+				<f:for each="{menu}" as="page">
+					<div class="col-sm-3">
+					<article class="portfolio portfolio-2 post-grid">
+						<div class="post-thumb">
+							<a href="{page.link}"{f:if(condition: page.target, then: ' target="{page.target}"')} title="{page.title}">
+								<f:cObject typoscriptObjectPath="lib.mediaResourcesSubpages" data="{uid:'{page.data.uid}'}" />
+							</a>
+							<div class="post-thumb-overlay text-center">
+								<div class="text-uppercase text-center">
+									<a data-rel="prettyPhoto[gallery]" href="{page.link}"{f:if(condition: page.target, then: ' target="{page.target}"')} title="{page.title}">
+										<i class="fa fa-search"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="post-content">
+							<header class="entry-header text-center text-uppercase">
+								<h6>unterwegs ...</h6>
+								<h2 class="entry-title">
+									<a href="{page.link}"{f:if(condition: page.target, then: ' target="{page.target}"')} title="{page.title}">
+									{page.title}
+									</a>
+								</h2>
+							</header>
+						</div>
+					</article>
+					</div>
+				</f:for>
+
+			</f:if>
+
+	</div>
+
+</f:section>
+</html>

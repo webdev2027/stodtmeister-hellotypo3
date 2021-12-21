@@ -1,0 +1,77 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<!--
+	=====================
+		EXT:.../Resources/Private/Extensions/News/Partials/List/ItemCamping.html
+-->
+<div class="col-md-4">
+    <article class="single-blog post-grid camping">
+
+        <n:excludeDisplayedNews newsItem="{newsItem}"/>
+
+        <div class="post-thumb">
+            <f:if condition="{newsItem.mediaPreviews}">
+                <f:then>
+                    <div class="news-img-wrap">
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                            <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                <f:if condition="{mediaElement.originalResource.type} == 2">
+                                    <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}"
+                                             alt="{mediaElement.originalResource.alternative}" class="img-responsive"
+                                             width="360"
+                                             maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 4">
+                                    <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 5">
+                                    <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}"
+                                             alt="{mediaElement.originalResource.alternative}" class="img-responsive"
+                                             width="360"
+                                             maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                </f:if>
+                            </f:alias>
+                        </n:link>
+                    </div>
+                </f:then>
+                <f:else>
+                    <f:if condition="{settings.displayDummyIfNoMedia}">
+                        <div class="news-img-wrap">
+                                <span class="no-media-element">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:image src="{settings.list.media.dummyImage}" title="" alt="" class="img-responsive"
+                                                 width="360"
+                                                 maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                    </n:link>
+                                </span>
+                        </div>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </div>
+        <div class="post-content">
+            <div class="entry-header text-center text-uppercase">
+                <f:if condition="{newsItem.firstCategory}">
+                    <f:then>
+                        <span class="post-cat">{newsItem.firstCategory.title}</span>
+                    </f:then>
+                    <f:else>
+                        <span class="post-cat">Unterwregs</span>
+                    </f:else>
+                </f:if>
+                <h2>
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                </h2>
+            </div>
+            <f:comment>
+                <!--
+                <div class="entry-content">
+                    {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                </div>
+                -->
+            </f:comment>
+        </div>
+    </article>
+</div>
+</html>

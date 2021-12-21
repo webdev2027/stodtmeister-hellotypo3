@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{navMain}">
+
+    <ul class="nav navbar-nav text-uppercase pull-left">
+        <f:for each="{navMain}" as="navMainItem">
+            <li class="{f:if(condition:navMainItem.children, then:' dropdown')}">
+                <f:render partial="Navigation/Elements/Link" arguments="{item: navMainItem}"/>
+
+                <f:if condition="{navMainItem.children}">
+                    <f:render section="submenu" arguments="{submenu: navMainItem.children}"/>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+
+    <f:section name="submenu">
+        <ul class="dropdown-menu">
+            <f:for each="{submenu}" as="subItem">
+                <li>
+                    <a href="{subItem.link}" target="{subItem.data.target}" title="{subItem.data.title}">{subItem.title}</a>
+                </li>
+            </f:for>
+        </ul>
+    </f:section>
+
+</f:if>
+
+</html>
